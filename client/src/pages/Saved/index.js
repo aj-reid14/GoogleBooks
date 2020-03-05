@@ -3,6 +3,7 @@ import { Row, Col, Container } from "../../components/Grid";
 import axios from "axios";
 import DeleteBookButton from '../../components/DeleteBookButton';
 import { BookSearchResults, Book } from '../../components/BookSearchResults';
+import "./style.css";
 
 class Saved extends Component {
     state = {
