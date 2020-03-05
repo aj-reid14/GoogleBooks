@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import { Row, Col, Container } from "../../components/Grid";
 import { BookSearchResults, Book } from "../../components/BookSearchResults";
+import SaveBookButton from "../../components/SaveBookButton";
 import "./style.css";
 
 class Search extends Component {
@@ -60,6 +61,14 @@ class Search extends Component {
                                             key={thisBook.id}
                                             title={thisBook.volumeInfo.title}
                                             link={thisBook.volumeInfo.infoLink}                                            
+                                            description={thisBook.volumeInfo.description ? thisBook.volumeInfo.description : "N/A"}
+                                            authors={thisBook.volumeInfo.authors ? thisBook.volumeInfo.authors : ["N/A"]}
+                                            image={thisBook.volumeInfo.imageLinks.thumbnail ? thisBook.volumeInfo.imageLinks.thumbnail : "#"}
+                                        />
+
+                                        <SaveBookButton
+                                            title={thisBook.volumeInfo.title}
+                                            link={thisBook.volumeInfo.infoLink}
                                             description={thisBook.volumeInfo.description ? thisBook.volumeInfo.description : "N/A"}
                                             authors={thisBook.volumeInfo.authors ? thisBook.volumeInfo.authors : ["N/A"]}
                                             image={thisBook.volumeInfo.imageLinks.thumbnail ? thisBook.volumeInfo.imageLinks.thumbnail : "#"}
