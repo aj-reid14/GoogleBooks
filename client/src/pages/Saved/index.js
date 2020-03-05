@@ -1,16 +1,66 @@
 import React, { Component } from 'react';
-import { Row, Col } from "../../components/Grid";
-import { BookList, BookListItem } from "../../components/BookList";
+import { Row, Col, Container } from "../../components/Grid";
 import axios from "axios";
-import EmptyList from '../../components/EmptyList';
-import RemoveBookBtn from '../../components/RemoveBookBtn';
+import DeleteBookButton from '../../components/DeleteBookButton';
+import { BookSearchResults, Book } from '../../components/BookSearchResults';
 
 class Saved extends Component {
-    state = {}
+    state = {
+        books: []
+    }
+
+    componentDidMount = () => {
+        this.getSavedBooks();
+    }
+
+    getSavedBooks = () => {
+        axios.get("/api/books")
+            .then(res => {
+                this.setState({ books: res.data })
+            })
+            .catch(err => console.log(err));
+    }
+
+    deleteSavedBook = (id) => {
+        axios.delete(`/api/books/${id}`)
+            .then(() => {
+                this.getSavedBooks();
+            })
+            .catch(err => console.log(err));
+    }
 
     render() {
         return (
-            <div></div>
+            <Container>
+                <Row>
+                    {!(this.state.books.length > 0) ?
+                        <div id="saved-books-label">
+                            <h1>(No Books Saved)</h1>
+                        </div>
+                        :
+                        <BookSearchResults>
+                            {this.state.books.map(thisBook => {
+                                return (
+                                    <Container>
+                                        <Book
+                                            key={thisBook._id}
+                                            title={thisBook.title}
+                                            link={thisBook.link}                                            
+                                            description={thisBook.description}
+                                            authors={thisBook.authors ? thisBook.authors : ["N/A"]}
+                                            image={thisBook.image}
+                                        />
+
+                                        <DeleteBookButton
+                                            onClick={() => this.deleteSavedBook(thisBook._id)}
+                                        />
+                                    </Container>
+                                )
+                            })}
+                        </BookSearchResults>
+                    }
+                </Row>
+            </Container>
         )
     }
 }
