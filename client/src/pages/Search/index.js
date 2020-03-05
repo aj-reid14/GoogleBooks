@@ -12,6 +12,10 @@ class Search extends Component {
         books: []
     };
 
+    displayBooks = (data) => {
+        this.setState({books: data.items});
+    }
+
     searchBooks = () => {
         const url = `https://www.googleapis.com/books/v1/volumes?q=${this.state.searchQuery}`;
 
@@ -19,6 +23,7 @@ class Search extends Component {
             .get(url)
             .then(res => {
                 console.log(res.data)
+                this.displayBooks(res.data);
             })
             .catch(err => console.log(err));
     }

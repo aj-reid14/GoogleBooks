@@ -1,13 +1,10 @@
 import React from "react";
 
-function Image({ src}) {
+function Image({ src }) {
     return (
-        <div
-            className="image"
-            style={{
-                backgroundImage: `url(${src})`
-            }}
-        />
+        <div>
+            <img className="image" src={src} />
+        </div>
     );
 }
 

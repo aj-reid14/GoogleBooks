@@ -1,0 +1,14 @@
+.book-result {
+    margin-top: 20px;
+    padding-top: 10px;
+    border-top: 2px solid black;
+    text-align: center;
+}
+
+div, h1, h3 {
+    margin: auto;
+}
+
+ul {
+    list-style: none;
+}
