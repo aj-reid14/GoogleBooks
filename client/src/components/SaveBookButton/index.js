@@ -4,12 +4,12 @@ import axios from "axios";
 class SaveBookButon extends Component {
 
     saveBook = (thisBook) => {
-        let book = {
+        var book = {
             title: thisBook.title,
             link: thisBook.link,
             image: thisBook.image,
             description: thisBook.description,
-            authors: thisBook.authors            
+            authors: thisBook.authors
         }
 
         axios.post("/api/books", book)

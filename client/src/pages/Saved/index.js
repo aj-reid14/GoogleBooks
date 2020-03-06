@@ -48,7 +48,7 @@ class Saved extends Component {
                                             title={thisBook.title}
                                             link={thisBook.link}                                            
                                             description={thisBook.description}
-                                            authors={thisBook.authors ? thisBook.authors : ["N/A"]}
+                                            authors={thisBook.authors}
                                             image={thisBook.image}
                                         />
 

@@ -8,7 +8,6 @@ import "./style.css";
 class Search extends Component {
     state = {
         searchQuery: "",
-        searchResult: [],
         books: []
     };
 
